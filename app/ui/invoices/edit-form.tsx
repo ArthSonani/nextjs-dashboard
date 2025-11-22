@@ -19,7 +19,10 @@ export default function EditInvoiceForm({
   customers: CustomerField[];
 }) {
 
-  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+  // const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);    causing error in 'action={updateInvoiceWithId}'
+  const updateInvoiceWithId = async (formData: FormData) => {
+    await updateInvoice(invoice.id, formData);
+  };
 
 
   return (
