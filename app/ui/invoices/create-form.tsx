@@ -13,13 +13,15 @@ import { createInvoice } from '@/app/lib/actions';
 import { useActionState } from 'react';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  const [state, formAction] = useActionState(createInvoice, initialState);
+
   const createInvoiceAction = async (formData: FormData) => {
     await createInvoice(formData);
   };
 
   return (
     // <form action={createInvoice}>  direct use of action binding causing error
-    <form action={createInvoiceAction}>
+    <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
